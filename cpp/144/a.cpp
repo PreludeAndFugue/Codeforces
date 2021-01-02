@@ -3,35 +3,6 @@
 
 using namespace std;
 
-int left_large_index(vector<int> &hs) {
-    int position = 0;
-    int large = 0;
-    int h;
-    for (int i = 0; i < hs.size(); i++) {
-        h = hs[i];
-        if (h > large) {
-            large = h;
-            position = i;
-        }
-    }
-    return position;
-}
-
-
-int right_small_index(vector<int> &hs) {
-    int position = hs.size();
-    int small = 200;
-    int h;
-    for (int i = 0; i < hs.size(); i++) {
-        h = hs[i];
-        if (h <= small) {
-            small = h;
-            position = i;
-        }
-    }
-    return position;
-}
-
 
 int main() {
     int n;
@@ -44,14 +15,28 @@ int main() {
         hs.push_back(x);
     }
 
-    int l = left_large_index(hs);
-    int s = right_small_index(hs);
+    int large_position = 0;
+    int large_value = 0;
+    int small_position = 0;
+    int small_value = 200;
+    int h;
 
-    int steps = l + (hs.size() - 1) - s;
-    if (l > s) {
+    for (int i = 0; i < hs.size(); i++) {
+        h = hs.at(i);
+        if (h <= small_value) {
+            small_value = h;
+            small_position = i;
+        }
+        if (h > large_value) {
+            large_value = h;
+            large_position = i;
+        }
+    }
+
+    int steps = large_position + (hs.size() - 1) - small_position;
+    if (large_position > small_position) {
         steps -= 1;
     }
 
-    // cout << l << " " << s << " answer: " << steps << endl;
     cout << steps << endl;
 }
