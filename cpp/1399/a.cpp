@@ -4,26 +4,33 @@
 
 using namespace std;
 
+vector<int> get_test();
 bool test(vector<int>);
 
 int main() {
     int t;
     cin >> t;
     for (int i = 0; i < t; i++) {
-        int n;
-        cin >> n;
-        vector<int> as;
-        int a;
-        for (int j = 0; j < n; j++) {
-            cin >> a;
-            as.push_back(a);
-        }
+        vector<int> as = get_test();
         if (test(as)) {
             cout << "YES" << endl;
         } else {
             cout << "NO" << endl;
         }
     }
+}
+
+
+vector<int> get_test() {
+    int n;
+    cin >> n;
+    vector<int> as;
+    int a;
+    for (int j = 0; j < n; j++) {
+        cin >> a;
+        as.push_back(a);
+    }
+    return as;
 }
 
 
