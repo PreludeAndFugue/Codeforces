@@ -2,17 +2,24 @@
 
 using namespace std;
 
+int nearest(int, int, int);
+
 int main() {
     int t;
     cin >> t;
     for (int i = 0; i < t; i++) {
         int x, y, n;
         cin >> x >> y >> n;
-        int a = n % x;
-        if (a >= y) {
-            cout << n + y - a << endl;
-        } else {
-            cout << n - x + y - a << endl;
-        }
+        cout << nearest(x, y, n);
+    }
+}
+
+
+int nearest(int x, int y, int n) {
+    int a = n % x;
+    if (a >= y) {
+        return n + y - a;
+    } else {
+        return n - x + y - a;
     }
 }
